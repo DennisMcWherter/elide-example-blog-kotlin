@@ -1,6 +1,5 @@
 package com.dennismcwherter.elide.app.filters
 
-import com.dennismcwherter.elide.app.models.Account
 import com.dennismcwherter.elide.app.security.context.ApplicationSecurityContext
 import com.yahoo.elide.core.DataStore
 import com.yahoo.elide.datastores.hibernate5.HibernateStore

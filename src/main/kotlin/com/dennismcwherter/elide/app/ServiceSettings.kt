@@ -1,17 +1,19 @@
-package com.dennismcwherter.elide.app.security;
+package com.dennismcwherter.elide.app
 
+import com.dennismcwherter.elide.app.filters.UserAuthFilter
+import com.dennismcwherter.elide.app.models.Account
 import com.dennismcwherter.elide.app.security.checks.AccountChecks
 import com.dennismcwherter.elide.app.security.checks.OwnedEntityChecks
 import com.dennismcwherter.elide.app.security.checks.UserChecks
 import com.yahoo.elide.security.checks.Check
 import com.yahoo.elide.security.checks.prefab.Common
 import com.yahoo.elide.security.checks.prefab.Role
-import com.yahoo.elide.standalone.interfaces.CheckMappingsProvider
+import com.yahoo.elide.standalone.config.ElideStandaloneSettings
 
 /**
- * Application programmatic settings class.
+ * Configuration for Service
  */
-class Settings : CheckMappingsProvider {
+class ServiceSettings : ElideStandaloneSettings {
     override fun getCheckMappings(): MutableMap<String, Class<out Check<out Any>>> {
         return mutableMapOf(
                 "any user" to Role.ALL::class.java,
@@ -22,5 +24,17 @@ class Settings : CheckMappingsProvider {
                 "is accessed by owner at operation" to OwnedEntityChecks.IsAccessedByOwner.AtOperation::class.java,
                 "entity is newly created" to Common.UpdateOnCreate::class.java
         )
+    }
+
+    override fun getFilters(): MutableList<Class<out Any>> {
+        return mutableListOf(UserAuthFilter::class.java)
+    }
+
+    override fun getPort(): Int {
+        return 5050;
+    }
+
+    override fun getModelPackageName(): String {
+        return "com.dennismcwherter.elide.app.models"
     }
 }
