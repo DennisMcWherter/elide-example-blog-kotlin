@@ -5,7 +5,7 @@
 @ReadPermission(expression = "any user")
 @UpdatePermission(expression = "deny all")
 @DeletePermission(expression = "deny all")
-@SharePermission(expression = "deny all")
+@SharePermission
 package com.dennismcwherter.elide.app.models;
 
 import com.yahoo.elide.annotation.CreatePermission;

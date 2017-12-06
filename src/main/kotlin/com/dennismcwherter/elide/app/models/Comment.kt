@@ -17,7 +17,7 @@ import javax.persistence.Transient
 
 @Entity
 @Include
-@UpdatePermission(expression = "entity is newly created OR is accessed by owner at operation")
+@UpdatePermission(expression = "is accessed by owner at operation")
 @DeletePermission(expression = "is accessed by owner at operation")
 class Comment : OwnedEntity {
     @get:Id
@@ -31,7 +31,6 @@ class Comment : OwnedEntity {
     var post: Post? = null
 
     @get:ManyToOne(optional = false)
-    @get:UpdatePermission(expression = "entity is newly created")
     var owner: Account? = null
 
     /**

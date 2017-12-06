@@ -21,8 +21,7 @@ class ServiceSettings : ElideStandaloneSettings {
                 "user is logged in" to UserChecks.IsLoggedIn::class.java,
                 "user is accessing self" to AccountChecks.AccessingSelf::class.java,
                 "is accessed by owner at commit" to OwnedEntityChecks.IsAccessedByOwner.AtCommit::class.java,
-                "is accessed by owner at operation" to OwnedEntityChecks.IsAccessedByOwner.AtOperation::class.java,
-                "entity is newly created" to Common.UpdateOnCreate::class.java
+                "is accessed by owner at operation" to OwnedEntityChecks.IsAccessedByOwner.AtOperation::class.java
         )
     }
 

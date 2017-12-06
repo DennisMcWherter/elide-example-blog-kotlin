@@ -16,7 +16,7 @@ import javax.persistence.Transient
 
 @Entity
 @Include(rootLevel = true)
-@UpdatePermission(expression = "entity is newly created OR is accessed by owner at operation")
+@UpdatePermission(expression = "is accessed by owner at operation")
 class Post : OwnedEntity {
     @get:Id
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)
