@@ -19,16 +19,11 @@ buildscript {
 }
 
 apply plugin: 'kotlin'
-//apply plugin: 'kotlin-noarg'
 apply plugin: 'kotlin-jpa'
 apply plugin: 'application'
 apply plugin: 'com.github.johnrengelman.shadow'
 
-//noArg {
-//    annotation("javax.persistence.Entity")
-//}
-
-mainClassName = 'com.yahoo.elide.standalone.Main'
+mainClassName = 'com.dennismcwherter.elide.app.MainKt'
 
 tasks.assemble.dependsOn tasks.shadowJar
 
@@ -39,7 +34,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    compile "com.yahoo.elide:elide-standalone:3.1.2"
+    compile "com.yahoo.elide:elide-standalone:4.0-beta-2"
+    compile "com.yahoo.elide:elide-graphql:4.0-beta-2"
     compile "org.mindrot:jbcrypt:0.4"
-    compile "mysql:mysql-connector-java:6.0.6"
 }

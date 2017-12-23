@@ -22,10 +22,10 @@ import javax.persistence.Transient
 @Entity
 @Include(rootLevel = true)
 @CreatePermission(expression = "any user")
-@ReadPermission(expression = "entity is newly created OR user is accessing self")
-@UpdatePermission(expression = "entity is newly created OR user is accessing self")
+@ReadPermission(expression = "user is accessing self")
+@UpdatePermission(expression = "user is accessing self")
 @DeletePermission(expression = "user is accessing self")
-@SharePermission(expression = "user is accessing self")
+@SharePermission
 class Account {
     @get:Id
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)
