@@ -34,7 +34,6 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    compile "com.yahoo.elide:elide-standalone:4.0-beta-2"
-    compile "com.yahoo.elide:elide-graphql:4.0-beta-2"
+    compile "com.yahoo.elide:elide-standalone:4.0-beta-4"
     compile "org.mindrot:jbcrypt:0.4"
 }
