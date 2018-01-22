@@ -109,7 +109,39 @@ We have examples of these checks operating on data as well as user principal obj
  
 ## <a name="using"></a>Using the Web API
 
-The API supports 2 top-level (i.e. rootable) endpoints:
+#### GraphQL
+
+The GraphQL-based API has a single endpoint:
+
+`/graphql/api/v1`
+
+You can use one of 2 top-level (i.e. rootable) objects to manipulate this API:
+
+<table>
+<thead>
+  <tr><th>Object</th><th>Description</th></tr>
+</thead>
+<tr><td>account</td><td>Used for all account actions. Can return current user account info.</td></tr>
+<tr><td>post</td><td>Used for all post actions. Contains all posts.</td></tr>
+</table>
+
+Additionally, over HTTP we use the `json` format to send our request. Similarly, we support additional headers for login. See below for an outlined list:
+
+<table>
+<thead>
+  <tr><th>Header</th><th>Value</th></tr>
+</thead>
+<tr><td>Content-Type</td><td>application/json</td></tr>
+<tr><td>Accept</td><td>application/json</td></tr>
+<tr><td>User<strong>*</strong></td><td>&lt;your username&gt;</td></tr>
+<tr><td>Password<strong>*</strong></td><td>&lt;your password&gt;</td></tr>
+</table>
+
+__* Only required if performing an action as logged in user__
+
+#### JSON-API
+
+The JSON-API-based API supports 2 top-level (i.e. rootable) endpoints:
 
 <table>
 <thead>
@@ -141,6 +173,21 @@ __* Only required if performing an action as logged in user__
 
 ### <a name="using-user"></a>Creating a User
 
+#### GraphQL
+
+```
+$ curl -X POST \
+    http://127.0.0.1:5050/graphql/api/v1 \
+    -H 'accept: application/json' \
+    -H 'content-type: application/json' \
+    -d '{
+        "query": "mutation { account(op:UPSERT, data:{name:\"user1\", newPassword:\"123\"}) { edges { node { id name } } } }"
+    }
+'
+```
+
+#### JSON-API
+
 ```
 $ curl -X POST \
     http://127.0.0.1:5050/api/v1/account \
@@ -159,6 +206,23 @@ $ curl -X POST \
 ```
 
 ### <a name="using-post"></a>Creating a Post
+
+#### GraphQL
+
+```
+curl -X POST \
+    http://127.0.0.1:5050/graphql/api/v1 \
+    -H 'accept: application/json' \
+    -H 'content-type: application/json' \
+    -H 'password: 123' \
+    -H 'user: user1' \
+    -d '{
+         "query": "mutation { post(op:UPSERT, data:{content:\"This is my very first post!!!\", owner:{id:\"1\"}}) { edges { node { id content owner { edges { node { id } } } } } } }"
+     }
+'
+```
+
+#### JSON-API
 
 ```
 $ curl -X POST \
@@ -184,6 +248,23 @@ $ curl -X POST \
 ```
 
 ### <a name="using-comment"></a>Creating a Comment
+
+#### GraphQL
+
+```
+curl -X POST \
+    http://127.0.0.1:5050/graphql/api/v1 \
+    -H 'accept: application/json' \
+    -H 'content-type: application/json' \
+    -H 'password: 123' \
+    -H 'user: user1' \
+    -d '{
+        "query": "mutation { post(ids: \"1\") { edges { node { comments(op:UPSERT, data:{content:\"This is my first comment. It is very nice!\", owner:{id:\"1\"}}) { edges { node { id content owner { edges { node { id } } } } } } } } } }"
+    }
+'
+```
+
+#### JSON-API
 
 ```
 $ curl -X POST \

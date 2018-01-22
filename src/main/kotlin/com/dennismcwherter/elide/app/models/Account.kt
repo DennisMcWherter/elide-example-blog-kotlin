@@ -22,7 +22,7 @@ import javax.persistence.Transient
 @Entity
 @Include(rootLevel = true)
 @CreatePermission(expression = "any user")
-@ReadPermission(expression = "user is accessing self")
+@ReadPermission(expression = "user is accessing self OR entity is newly created")
 @UpdatePermission(expression = "user is accessing self")
 @DeletePermission(expression = "user is accessing self")
 @SharePermission

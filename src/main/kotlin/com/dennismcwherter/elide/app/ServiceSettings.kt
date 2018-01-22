@@ -1,7 +1,6 @@
 package com.dennismcwherter.elide.app
 
 import com.dennismcwherter.elide.app.filters.UserAuthFilter
-import com.dennismcwherter.elide.app.models.Account
 import com.dennismcwherter.elide.app.security.checks.AccountChecks
 import com.dennismcwherter.elide.app.security.checks.OwnedEntityChecks
 import com.dennismcwherter.elide.app.security.checks.UserChecks
@@ -21,7 +20,8 @@ class ServiceSettings : ElideStandaloneSettings {
                 "user is logged in" to UserChecks.IsLoggedIn::class.java,
                 "user is accessing self" to AccountChecks.AccessingSelf::class.java,
                 "is accessed by owner at commit" to OwnedEntityChecks.IsAccessedByOwner.AtCommit::class.java,
-                "is accessed by owner at operation" to OwnedEntityChecks.IsAccessedByOwner.AtOperation::class.java
+                "is accessed by owner at operation" to OwnedEntityChecks.IsAccessedByOwner.AtOperation::class.java,
+                "entity is newly created" to Common.UpdateOnCreate::class.java
         )
     }
 
