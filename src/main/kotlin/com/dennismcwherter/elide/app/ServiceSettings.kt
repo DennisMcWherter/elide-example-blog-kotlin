@@ -1,5 +1,6 @@
 package com.dennismcwherter.elide.app
 
+import com.dennismcwherter.elide.app.filters.CorsFilter
 import com.dennismcwherter.elide.app.filters.UserAuthFilter
 import com.dennismcwherter.elide.app.security.checks.AccountChecks
 import com.dennismcwherter.elide.app.security.checks.OwnedEntityChecks
@@ -26,7 +27,7 @@ class ServiceSettings : ElideStandaloneSettings {
     }
 
     override fun getFilters(): MutableList<Class<out Any>> {
-        return mutableListOf(UserAuthFilter::class.java)
+        return mutableListOf(UserAuthFilter::class.java, CorsFilter::class.java)
     }
 
     override fun getPort(): Int {
