@@ -3,6 +3,7 @@ package com.yahoo.elide.datastores.hibernate5;
 import com.yahoo.elide.core.DataStore;
 import com.yahoo.elide.core.DataStoreTransaction;
 import com.yahoo.elide.core.EntityDictionary;
+import org.hibernate.FlushMode;
 import org.hibernate.ScrollMode;
 import org.hibernate.Session;
 import org.hibernate.envers.AuditReaderFactory;
@@ -22,7 +23,9 @@ public class HibernateRevisionsDataStore extends HibernateEntityManagerStore {
     @Override
     @SuppressWarnings("resource")
     public DataStoreTransaction beginTransaction() {
-        return new HibernateRevisionsTransaction(AuditReaderFactory.get(entityManager), getSession());
+        Session session = getSession();
+        session.setFlushMode(FlushMode.MANUAL);
+        return new HibernateRevisionsTransaction(AuditReaderFactory.get(entityManager), session);
     }
 
     @Override

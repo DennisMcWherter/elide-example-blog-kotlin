@@ -13,6 +13,7 @@ import org.reflections.util.FilterBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.FlushModeType;
 import javax.persistence.Persistence;
 import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class RevisionDataStoreSupplier implements Supplier<DataStore> {
         options.put("hibernate.ejb.loaded.classes", bindClasses);
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("example-data", options);
         HibernateEntityManager em = (HibernateEntityManager) emf.createEntityManager();
+        em.setFlushMode(FlushModeType.COMMIT);
 
 
         return new HibernateRevisionsDataStore(em);
