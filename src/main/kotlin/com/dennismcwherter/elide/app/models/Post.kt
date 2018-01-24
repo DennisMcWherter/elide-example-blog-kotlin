@@ -5,6 +5,7 @@ import com.yahoo.elide.annotation.ComputedAttribute
 import com.yahoo.elide.annotation.Exclude
 import com.yahoo.elide.annotation.Include
 import com.yahoo.elide.annotation.UpdatePermission
+import org.hibernate.envers.Audited
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -17,6 +18,7 @@ import javax.persistence.Transient
 @Entity
 @Include(rootLevel = true)
 @UpdatePermission(expression = "is accessed by owner at operation")
+@Audited
 class Post : OwnedEntity {
     @get:Id
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)

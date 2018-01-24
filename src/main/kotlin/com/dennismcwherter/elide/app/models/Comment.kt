@@ -6,6 +6,7 @@ import com.yahoo.elide.annotation.DeletePermission
 import com.yahoo.elide.annotation.Exclude
 import com.yahoo.elide.annotation.Include
 import com.yahoo.elide.annotation.UpdatePermission
+import org.hibernate.envers.Audited
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -19,6 +20,7 @@ import javax.persistence.Transient
 @Include
 @UpdatePermission(expression = "is accessed by owner at operation")
 @DeletePermission(expression = "is accessed by owner at operation")
+@Audited
 class Comment : OwnedEntity {
     @get:Id
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)

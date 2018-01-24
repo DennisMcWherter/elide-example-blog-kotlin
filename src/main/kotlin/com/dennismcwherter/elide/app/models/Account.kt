@@ -8,6 +8,7 @@ import com.yahoo.elide.annotation.Include
 import com.yahoo.elide.annotation.ReadPermission
 import com.yahoo.elide.annotation.SharePermission
 import com.yahoo.elide.annotation.UpdatePermission
+import org.hibernate.envers.Audited
 import org.mindrot.jbcrypt.BCrypt
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -26,6 +27,7 @@ import javax.persistence.Transient
 @UpdatePermission(expression = "user is accessing self")
 @DeletePermission(expression = "user is accessing self")
 @SharePermission
+@Audited
 class Account {
     @get:Id
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)
