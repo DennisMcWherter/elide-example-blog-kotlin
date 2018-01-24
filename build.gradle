@@ -34,6 +34,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    compile "com.yahoo.elide:elide-standalone:4.0-beta-5"
+    compile "com.yahoo.elide:elide-standalone:4.0-beta-6"
+    compile "org.hibernate:hibernate-envers:5.0.2.Final"
     compile "org.mindrot:jbcrypt:0.4"
 }
