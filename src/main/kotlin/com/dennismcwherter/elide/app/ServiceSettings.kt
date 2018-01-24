@@ -31,7 +31,11 @@ class ServiceSettings : ElideStandaloneSettings {
     }
 
     override fun getPort(): Int {
-        return 5050;
+        return 5050
+    }
+
+    override fun getHibernate5ConfigPath(): String {
+        return "./settings/persistence.xml"
     }
 
     override fun getModelPackageName(): String {

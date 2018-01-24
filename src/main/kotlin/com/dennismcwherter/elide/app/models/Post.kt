@@ -19,7 +19,7 @@ import org.hibernate.envers.Audited
 @Audited
 @Include(rootLevel = true)
 @UpdatePermission(expression = "is accessed by owner at operation")
-class PostMessage : OwnedEntity {
+class Post : OwnedEntity {
     @get:Id
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0

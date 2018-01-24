@@ -30,7 +30,7 @@ class Comment : OwnedEntity {
     var content: String? = null
 
     @get:OneToOne(optional = false)
-    var post: PostMessage? = null
+    var post: Post? = null
 
     @get:ManyToOne(optional = false)
     var owner: Account? = null
