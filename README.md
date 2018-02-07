@@ -293,6 +293,16 @@ $ curl -X POST \
 
 #### GraphQL
 
+```
+$ curl -X POST \
+    http://127.0.0.1:5050/graphql/api/v1 \
+    -H 'accept: application/json' \
+    -H 'content-type: application/json' \
+    -d '{
+    "query" : "{ post { edges { node { id comments { edges { node { id content } } } } } } }" 
+}'
+```
+
 #### JSON-API
 
 ```
