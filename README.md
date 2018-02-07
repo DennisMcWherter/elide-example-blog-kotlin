@@ -299,7 +299,7 @@ $ curl -X POST \
     -H 'accept: application/json' \
     -H 'content-type: application/json' \
     -d '{
-    "query" : "{ post { edges { node { id comments { edges { node { id content } } } } } } }" 
+    "query" : "{ post { edges { node { id content comments { edges { node { id content } } } } } } }" 
 }'
 ```
 
