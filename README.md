@@ -288,3 +288,24 @@ $ curl -X POST \
   }
 }'
 ```
+
+### <a name="using-comment"></a>Query Posts with Comments
+
+#### GraphQL
+
+```
+$ curl -X POST \
+    http://127.0.0.1:5050/graphql/api/v1 \
+    -H 'accept: application/json' \
+    -H 'content-type: application/json' \
+    -d '{
+    "query" : "{ post { edges { node { id content comments { edges { node { id content } } } } } } }" 
+}'
+```
+
+#### JSON-API
+
+```
+$ curl -X GET http://127.0.0.1:5050/api/v1/post?include=comments | python -m json.tool
+```
+
