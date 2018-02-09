@@ -1,0 +1,7 @@
+<configuration debug="true">
+    <logger name="com.yahoo" level="TRACE" />
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
