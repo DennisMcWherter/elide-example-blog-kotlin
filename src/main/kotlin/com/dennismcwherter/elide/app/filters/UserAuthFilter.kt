@@ -2,7 +2,7 @@ package com.dennismcwherter.elide.app.filters
 
 import com.dennismcwherter.elide.app.security.context.ApplicationSecurityContext
 import com.yahoo.elide.core.DataStore
-import com.yahoo.elide.datastores.hibernate5.HibernateSessionFactoryStore
+import com.yahoo.elide.datastores.hibernate5.HibernateRevisionsDataStore
 import org.mindrot.jbcrypt.BCrypt
 import javax.inject.Inject
 import javax.ws.rs.WebApplicationException
@@ -30,7 +30,7 @@ class UserAuthFilter : ContainerRequestFilter {
                 // transactions. Note, there are other ways to lazily evaluate this inside of Elide, but they
                 // are less straightforward than just opening a short-lived DB connection to verify the user.
                 dataStore?.let { ds ->
-                    val hibernateStore = ds as HibernateSessionFactoryStore
+                    val hibernateStore = ds as HibernateRevisionsDataStore
                     hibernateStore.beginReadTransaction().use { tx ->
                         // Within the open transaction, fetch a session
                         val session = hibernateStore.session

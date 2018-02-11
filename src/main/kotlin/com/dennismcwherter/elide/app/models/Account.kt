@@ -15,11 +15,13 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Transient
+import org.hibernate.envers.Audited
 
 /**
  * User account model.
  */
 @Entity
+@Audited
 @Include(rootLevel = true)
 @CreatePermission(expression = "any user")
 @ReadPermission(expression = "user is accessing self OR entity is newly created")

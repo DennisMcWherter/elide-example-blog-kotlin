@@ -13,11 +13,13 @@ import javax.persistence.Id
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Transient
+import org.hibernate.envers.Audited
 
 @Entity
+@Audited
 @Include(rootLevel = true)
 @UpdatePermission(expression = "is accessed by owner at operation")
-class Post : OwnedEntity {
+class PostMessage : OwnedEntity {
     @get:Id
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0

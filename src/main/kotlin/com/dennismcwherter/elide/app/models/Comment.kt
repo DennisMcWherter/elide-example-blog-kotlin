@@ -14,9 +14,11 @@ import javax.persistence.Id
 import javax.persistence.ManyToOne
 import javax.persistence.OneToOne
 import javax.persistence.Transient
+import org.hibernate.envers.Audited
 
 @Entity
 @Include
+@Audited
 @UpdatePermission(expression = "is accessed by owner at operation")
 @DeletePermission(expression = "is accessed by owner at operation")
 class Comment : OwnedEntity {
@@ -28,7 +30,7 @@ class Comment : OwnedEntity {
     var content: String? = null
 
     @get:OneToOne(optional = false)
-    var post: Post? = null
+    var post: PostMessage? = null
 
     @get:ManyToOne(optional = false)
     var owner: Account? = null
