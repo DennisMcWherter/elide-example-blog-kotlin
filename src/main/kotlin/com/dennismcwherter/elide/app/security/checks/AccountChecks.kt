@@ -13,13 +13,10 @@ import java.util.*
 abstract class AccountChecks {
 
     class AccessingSelf : OperationCheck<Account>() {
-        override fun ok(`object`: Account?, requestScope: RequestScope?, changeSpec: Optional<ChangeSpec>?): Boolean {
-            return `object`?.let { account ->
-                val principal = requestScope!!.user?.opaqueUser as AccountPrincipal?
-                account.name?.let { name ->
-                    name == principal?.name
-                }
+        override fun ok(`object`: Account?, requestScope: RequestScope?, changeSpec: Optional<ChangeSpec>?): Boolean =
+            `object`?.name?.let { name ->
+                val principal = requestScope?.user?.opaqueUser as AccountPrincipal?
+                name == principal?.name
             } ?: false
-        }
     }
 }
