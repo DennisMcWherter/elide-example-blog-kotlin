@@ -15,26 +15,29 @@ abstract class OwnedEntityChecks {
 
     abstract class IsAccessedByOwner {
         companion object {
-            private fun isAccessedByOwner(entity: OwnedEntity?, requestScope: RequestScope): Boolean {
-                return entity?.let { obj ->
-                    obj.getOwningAccount()?.name.let { name ->
-                        val principal = requestScope.user.opaqueUser as AccountPrincipal
-                        return name.equals(principal.name)
-                    }
+            private fun isAccessedByOwner(entity: OwnedEntity?, requestScope: RequestScope?): Boolean =
+                entity?.getOwningAccount()?.name?.let { name ->
+                    val principal = requestScope?.user?.opaqueUser as? AccountPrincipal
+                    name == principal?.name
                 } ?: false
-            }
         }
 
         class AtCommit : CommitCheck<OwnedEntity>() {
-            override fun ok(`object`: OwnedEntity?, requestScope: RequestScope?, changeSpec: Optional<ChangeSpec>?): Boolean {
-                return isAccessedByOwner(`object`, requestScope!!)
-            }
+            override fun ok(
+                `object`: OwnedEntity?,
+                requestScope: RequestScope?,
+                changeSpec: Optional<ChangeSpec>?
+            ): Boolean =
+                isAccessedByOwner(`object`, requestScope)
         }
 
         class AtOperation : OperationCheck<OwnedEntity>() {
-            override fun ok(`object`: OwnedEntity?, requestScope: RequestScope?, changeSpec: Optional<ChangeSpec>?): Boolean {
-                return isAccessedByOwner(`object`, requestScope!!)
-            }
+            override fun ok(
+                `object`: OwnedEntity?,
+                requestScope: RequestScope?,
+                changeSpec: Optional<ChangeSpec>?
+            ): Boolean =
+                isAccessedByOwner(`object`, requestScope)
         }
     }
 }

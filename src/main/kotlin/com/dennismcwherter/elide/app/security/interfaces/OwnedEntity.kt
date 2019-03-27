@@ -6,5 +6,5 @@ import com.dennismcwherter.elide.app.models.Account
  * Interface describing "account owned" objects.
  */
 interface OwnedEntity {
-    fun getOwningAccount() : Account?
+    fun getOwningAccount(): Account?
 }

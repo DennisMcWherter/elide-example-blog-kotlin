@@ -14,8 +14,8 @@ abstract class UserChecks {
      */
     class IsLoggedIn : UserCheck() {
         override fun ok(user: User?): Boolean {
-            val principal: AccountPrincipal? = user?.opaqueUser as AccountPrincipal
-            return principal?.loggedIn.let { it } ?: false
+            val principal: AccountPrincipal? = user?.opaqueUser as? AccountPrincipal
+            return principal?.loggedIn ?: false
         }
     }
 }
